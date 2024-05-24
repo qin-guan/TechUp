@@ -11,12 +11,18 @@ public class Tests : BrowserTest
     {
         try
         {
-            var page = await Browser.NewPageAsync();
+            var page = await Browser.NewPageAsync(new BrowserNewPageOptions
+            {
+                ViewportSize = new ViewportSize
+                {
+                    Width = 1200,
+                    Height = 800
+                }
+            });
             await page.GotoAsync(site.ToString());
             await page.ScreenshotAsync(new PageScreenshotOptions()
             {
-                Path = $"./output/{site.Host}.jpeg",
-                Quality = 100
+                Path = $"./output/{site.Host}.png",
             });
         }
         catch
@@ -29,30 +35,63 @@ public class Tests : BrowserTest
     {
         return new List<string>
         {
-            "https://brainstogether.one", "https://cannot.app/", "https://icebreakerdowhat.com/",
-            "https://snso-tools.space", "https://stepsgowhere.net", "https://www.joel-tan.com/", "https://rekki.xyz",
-            "https://backtobp.one", "https://www.digitraining.pro", "https://seasonparking.shop/",
-            "https://www.singaporenursingroom.com/", "https://paychecked.info", "https://cafegowhere.co",
-            "https://www.nekotoinu.cc/", "https://www.chairgpt.pro", "https://www.halalgowheresg.info/",
-            "https://parkwhere.net", "http://taskprioritization.xyz/", "https://dylanwkw.com",
-            "https://stayhere.dowhat.ohemgee.net", "https://introspeaction.com/", "https://pm-calculator.com",
-            "https://pantrybooking.com", "https://grocerlisticated.site", "http://msw.tools/",
-            "https://airqualitychecker.net", "https://www.keeporthrow.com", "https://www.examrevisionplanner.com",
-            "https://learnmusicalnotes.com", "https://www.shoplistapp.com/", "https://chatwitus.com/",
-            "https://digicareer.coach", "https://takestock.day", "https://leaveplanner.online/",
-            "https://www.vicfindbook.net/", "https://brewbuddy.site/", "https://trades.arifshehab.com/",
-            "https://findmentor.co/", "https://thefeelingjournal.com", "https://grocerytracker.online/",
-            "https://isbonniehungry.com", "https://modernmulans.com/", "https://www.mindergap.com",
-            "https://kidexpensetracker.com/", "https://checkthescam.com", "https://asimplelist.com",
-            "https://whatsnack.click", "https://www.halaleats.asia/", "https://www.buyorbuynot.com/",
-            "https://decideforme.today/", "https://omgjjbuiltawebsite.onrender.com", "https://www.jiojalan.com/",
-            "https://zrhomework.com/", "https://www.snackandrun.com/", "http://virtual-usher.co",
-            "https://bobaboard.co/bobaboard", "https://ngep-dashboard.abilashsivalingam.com",
-            "https://naptrack.growingpancakes.com/", "https://hangry-go-where.com/", "https://govlinkchecker.com",
-            "https://www.milesvscashbacksg.xyz", "https://savemyinvite.app/", "https://laujingpeng.com",
-            "https://helpcomehere.com", "https://seccy.app/", "https://fussfreetour.onrender.com/",
-            "https://ccrewards.pro", "https://lumnut.art", "https://whichfurnitureshoptogo.com",
-            "https://ngrenae.github.io/take6/", "https://www.ratemylibrary.club/", "https://dashboardsg.augalice.com/"
+            "https://periodpal.cc",
+            "https://muslimpraygowhere.com/",
+            "https://www.readyknot.co/",
+            "https://trackmyprotein/",
+            "https://familytime.work/",
+            "https://wheremymoney.work/",
+            "https://kokhing.org",
+            "https://weekendgowhere.net",
+            "https://sgnaturecalls.com/",
+            "https://coach-codi.org",
+            "https://mindyourlanguage.cc",
+            "https://singalore.app",
+            "https://helpchecksg.com",
+            "https://trilingotots.com",
+            "https://What2Cook.xyz",
+            "https://my-family-recipes.com",
+            "https://kaypohusefully.org",
+            "https://lookmeup.org",
+            "https://wealthup.cc/",
+            "https://tourgether.xyz/",
+            "https://estategiveaway.org",
+            "https://aCivilExchange.org",
+            "https://sgeatwhere.com",
+            "https://sgeatwhere.onrender.com/",
+            "https://offthebeatentrack.app",
+            "https://dunsaybojio.net/",
+            "https://shadesshare.com/",
+            "https://huhwhatsthis.org",
+            "https://aihubapp.com/",
+            "https://worthit.cc",
+            "https://caifancaloriecounter.com",
+            "https://sayknowtoscams.com",
+            "https://saynotopfas.com",
+            "https://housemuch.app",
+            "https://bestpricesg.org",
+            "https://fixmyhdb.com",
+            "https://hikelah.onrender.com/",
+            "https://reportyourissue.org/",
+            "https://balancefithub.com",
+            "https://brewview.app",
+            "https://kidsgowhere.org",
+            "https://pawright.org",
+            "https://project-monitoring.org",
+            "https://tilt-app.org",
+            "https://sghospitalshuttle.com",
+            "https://SpellBuddy.net",
+            "https://caffeinewise.app",
+            "https://lelong.cc",
+            "https://tracktime.work",
+            "https://bulkyway.work/",
+            "https://pawfridge.com/",
+            "https://SpellingBee.CC",
+            "https://grantopia.work/",
+            "https://techup-proj.work",
+            "https://project-elysium.com",
+            "https://giftacheer.org",
+            "https://chefrebel.org"
         }.Select(e => new Uri(e)).ToList();
     }
 }
