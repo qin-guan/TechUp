@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechUp", "TechUp\TechUp.csproj", "{89F20854-0CA0-42B1-A40F-73806495ABAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89F20854-0CA0-42B1-A40F-73806495ABAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89F20854-0CA0-42B1-A40F-73806495ABAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89F20854-0CA0-42B1-A40F-73806495ABAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89F20854-0CA0-42B1-A40F-73806495ABAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
