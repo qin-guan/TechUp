@@ -10,6 +10,7 @@ using ZiggyCreatures.Caching.Fusion;
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.AddFusionCache();
+builder.Services.AddHttpLogging(o => { });
 
 var app = builder.Build();
 
@@ -44,5 +45,7 @@ app.MapGet("/screenshot", async (
 
     return TypedResults.File(buffer, "image/png", $"{uri.Host}.png");
 });
+
+app.UseHttpLogging();
 
 app.Run();
