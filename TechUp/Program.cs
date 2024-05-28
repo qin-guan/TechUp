@@ -2,13 +2,27 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Playwright;
 using ZiggyCreatures.Caching.Fusion;
+using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
 builder.Services.AddFusionCache();
+
+builder.Services.AddRateLimiter(_ => _
+    .AddFixedWindowLimiter(policyName: "fixed", options =>
+    {
+        options.PermitLimit = 4;
+        options.Window = TimeSpan.FromSeconds(12);
+        options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        options.QueueLimit = 2;
+    }));
+
 builder.Services.AddHttpLogging(o => { });
 
 var app = builder.Build();
+
+app.UseRateLimiter();
 
 using var pw = await Playwright.CreateAsync();
 var browser = await pw.Chromium.LaunchAsync();
