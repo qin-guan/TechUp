@@ -77,7 +77,6 @@ var tasks = sites.Select(async site =>
 {
     try
     {
-        Console.WriteLine($"Loading {site}");
         var page = await browser.NewPageAsync(new BrowserNewPageOptions
         {
             ViewportSize = new ViewportSize

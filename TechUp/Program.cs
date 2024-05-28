@@ -28,33 +28,34 @@ using var pw = await Playwright.CreateAsync();
 var browser = await pw.Chromium.LaunchAsync();
 
 app.MapGet("/screenshot", async (
-    IFusionCache fusionCache,
-    [FromQuery] [Required] Uri uri,
-    [FromQuery] int width = 1200,
-    [FromQuery] int height = 800
-) =>
-{
-    var buffer = await fusionCache.GetOrSetAsync<byte[]>(
-        $"screenshot:{uri}:{width}:{height}", async _ =>
-        {
-            var page = await browser.NewPageAsync(new BrowserNewPageOptions
+        IFusionCache fusionCache,
+        [FromQuery] [Required] Uri uri,
+        [FromQuery] int width = 1200,
+        [FromQuery] int height = 800
+    ) =>
+    {
+        var buffer = await fusionCache.GetOrSetAsync<byte[]>(
+            $"screenshot:{uri}:{width}:{height}", async _ =>
             {
-                ViewportSize = new ViewportSize
+                var page = await browser.NewPageAsync(new BrowserNewPageOptions
                 {
-                    Width = width,
-                    Height = height
-                }
-            });
+                    ViewportSize = new ViewportSize
+                    {
+                        Width = width,
+                        Height = height
+                    }
+                });
 
-            await page.GotoAsync(uri.ToString());
+                await page.GotoAsync(uri.ToString());
 
-            return await page.ScreenshotAsync();
-        },
-        TimeSpan.FromMinutes(1)
-    );
+                return await page.ScreenshotAsync();
+            },
+            TimeSpan.FromMinutes(1)
+        );
 
-    return TypedResults.File(buffer, "image/png", $"{uri.Host}.png");
-});
+        return TypedResults.File(buffer, "image/png", $"{uri.Host}.png");
+    })
+    .RequireRateLimiting("fixed");
 
 app.UseHttpLogging();
 
