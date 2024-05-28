@@ -4,3 +4,9 @@
     build:
       context: .
       dockerfile: TechUp/Dockerfile
+
+  techup.commandline:
+    image: techup.commandline
+    build:
+      context: .
+      dockerfile: TechUp.CommandLine/Dockerfile
