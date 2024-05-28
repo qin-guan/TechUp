@@ -65,7 +65,9 @@ var sites = new List<string>
     "https://techup-proj.work",
     "https://project-elysium.com",
     "https://giftacheer.org",
-    "https://chefrebel.org"
+    "https://chefrebel.org",
+    "https://www.readyknot.co",
+    "https://sghospitalshuttleservices-static.onrender.com"
 }.Select(e => new Uri(e)).ToList();
 
 using var pw = await Playwright.CreateAsync();
@@ -87,15 +89,16 @@ var tasks = sites.Select(async site =>
         });
 
         await page.GotoAsync(site.ToString());
+        await page.WaitForTimeoutAsync(5000);
         await page.ScreenshotAsync(new PageScreenshotOptions()
         {
             Path = $"./output/{site.Host}.png",
         });
         Console.WriteLine($"Done loading {site}");
     }
-    catch
+    catch (Exception e)
     {
-        Console.WriteLine($"Failed to load {site}");
+        Console.WriteLine($"Failed to load {site} {e}");
         failed += $"Failed to load {site}\n";
     }
 });

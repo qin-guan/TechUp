@@ -12,10 +12,10 @@ builder.Services.AddFusionCache();
 builder.Services.AddRateLimiter(_ => _
     .AddFixedWindowLimiter(policyName: "fixed", options =>
     {
-        options.PermitLimit = 4;
-        options.Window = TimeSpan.FromSeconds(12);
+        options.PermitLimit = 8;
+        options.Window = TimeSpan.FromSeconds(10);
         options.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
-        options.QueueLimit = 2;
+        options.QueueLimit = 100;
     }));
 
 builder.Services.AddHttpLogging(o => { });
